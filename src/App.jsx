@@ -1,14 +1,12 @@
 import React, { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
 import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
-import { Experience } from './components/Experience';
 import { TechStack } from './components/TechStack';
 import { About } from './components/About';
 import { ContactModal } from './components/ContactModal';
 import { useEffect, useState } from 'react';
 import Lenis from 'lenis'
+import Spline from '@splinetool/react-spline'
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,14 +65,10 @@ function App() {
       
       {/* 3D Scene Background - Fixed */}
       <div className="fixed top-0 left-0 w-full h-screen z-0">
-         <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-            <color attach="background" args={['#050505']} />
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
-            <Suspense fallback={null}>
-               <Experience />
-            </Suspense>
-         </Canvas>
+         <Spline
+           scene="https://prod.spline.design/9TxK4-HNtEpArmLG/scene.splinecode"
+           className="w-full h-full"
+         />
       </div>
     </div>
   );

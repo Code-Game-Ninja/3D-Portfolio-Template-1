@@ -5,11 +5,11 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
+import Spline from '@splinetool/react-spline'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export const Experience = () => {
-  const meshRef = useRef()
   const groupRef = useRef()
 
   useGSAP(() => {
@@ -39,13 +39,6 @@ export const Experience = () => {
     }
   })
 
-  useFrame((state, delta) => {
-    if (meshRef.current) {
-        meshRef.current.rotation.x += delta * 0.2
-        meshRef.current.rotation.y += delta * 0.3
-    }
-  })
-
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 0, 5]} />
@@ -57,16 +50,7 @@ export const Experience = () => {
 
       <group ref={groupRef}>
           <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
-            <mesh ref={meshRef}>
-              <torusKnotGeometry args={[1, 0.3, 128, 16]} />
-              <meshStandardMaterial 
-                color="#4f46e5" 
-                roughness={0.1} 
-                metalness={0.8}
-                emissive="#1e1b4b"
-                emissiveIntensity={0.5}
-              />
-            </mesh>
+            <Robot />
           </Float>
       </group>
     </>

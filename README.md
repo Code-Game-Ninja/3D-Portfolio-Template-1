@@ -49,6 +49,80 @@
 
 <br />
 
+## 🎨 Customizing the 3D Model
+
+The portfolio currently features a **Spline 3D scene** - an interactive 3D design created with [Spline](https://spline.design). You can easily replace it with your own design!
+
+### **Option 1: Use Your Own Spline Design** (Recommended ⭐)
+
+1. **Create your design** at [spline.design](https://spline.design) (free account available)
+2. **Export your scene**:
+   - Click the "Export" button in Spline
+   - Select "Code Export" → "React"
+   - Copy the scene URL (e.g., `https://prod.spline.design/YOUR-ID/scene.splinecode`)
+3. **Update App.jsx** - Replace the scene URL in [`src/App.jsx`](src/App.jsx) (around line 73):
+
+```jsx
+<Spline
+  scene="https://prod.spline.design/YOUR-SCENE-ID/scene.splinecode"
+  className="w-full h-full"
+/>
+```
+
+### **Option 2: Switch Back to Three.js Custom Models**
+
+If you want to use custom Three.js models instead:
+
+1. **Install dependencies** (if removed):
+   ```bash
+   npm install @react-three/fiber @react-three/drei three
+   ```
+
+2. **Update App.jsx** imports:
+   ```jsx
+   import { Canvas } from '@react-three/fiber'
+   import { Suspense } from 'react'
+   import { Experience } from './components/Experience'
+   ```
+
+3. **Replace Spline with Canvas**:
+   ```jsx
+   <div className="fixed top-0 left-0 w-full h-screen z-0">
+     <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+       <color attach="background" args={['#050505']} />
+       <ambientLight intensity={0.5} />
+       <pointLight position={[10, 10, 10]} intensity={1} />
+       <Suspense fallback={null}>
+         <Experience />
+       </Suspense>
+     </Canvas>
+   </div>
+   ```
+
+4. **Use the Robot component** or any Three.js geometry - see [`Robot.jsx`](src/components/Robot.jsx) for the cartoonish robot example
+
+### **Option 3: Use .glb/.gltf 3D Models**
+
+1. Get a 3D model from [Sketchfab](https://sketchfab.com), [CGTrader](https://www.cgtrader.com), or create in Blender
+2. Place the model in `public/` folder (e.g., `public/model.glb`)
+3. Update Experience.jsx:
+
+```jsx
+import { useGLTF } from '@react-three/drei'
+
+const model = useGLTF('/model.glb')
+return <primitive object={model.scene} scale={1.5} />
+```
+
+### **Quick Spline Tips**
+
+- **Interactive elements**: Add click events in Spline editor
+- **Performance**: Keep poly count under 100k for smooth performance
+- **Mobile**: Test on mobile devices - Spline scenes can be heavy
+- **Loading**: Add a loading state while the scene loads
+
+<br />
+
 ## 🚀 Getting Started
 
 1.  **Clone the repository**
