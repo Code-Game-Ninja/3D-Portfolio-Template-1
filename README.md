@@ -20,7 +20,11 @@
   </p>
 
   <!-- Replace with actual project screenshot later -->
-  <img src="https://placehold.co/1200x600/111/444?text=Project+Preview+Coming+Soon" alt="Project Preview" width="100%" style="border-radius: 10px; border: 1px solid #333;" />
+  <img width="1898" height="939" alt="image" src="https://github.com/user-attachments/assets/14b2a98e-fd78-4e32-9ff2-8c1d5d7b9dc2" />
+
+ <p> <h3>Here Demo Link:</h3> 
+   https://3-d-portfolio-template-1.vercel.app/
+ </p>
 
 </div>
 
